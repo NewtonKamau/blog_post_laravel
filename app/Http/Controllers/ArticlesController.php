@@ -56,7 +56,7 @@ class ArticlesController extends Controller
      */
     public function show(Article $article)
     {
-        $article = Article::findorFail($article);
+
         return view('articles.show', ['article' => $article]);
     }
 
@@ -68,7 +68,7 @@ class ArticlesController extends Controller
      */
     public function edit(Article $article)
     {
-         $article = Article::findorFail($id);
+
         return view('articles.edit',compact('article'));
     }
 
@@ -79,14 +79,13 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(Article $article)
     { request()->validate([
             'title' => 'bail|required',
             'body' => 'bail|required',
             'except' => 'bail|required'
         ]);
 
-        $article = new Article();
         $article->title = request('title');
         $article->except = request('except');
         $article->body = request('body');
