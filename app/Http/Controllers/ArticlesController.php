@@ -36,12 +36,7 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-       $validatedAttributes= request()->validate([
-            'title' => 'required',
-            'body' => 'required',
-            'except' => 'required'
-        ]);
-       Article::create($validatedAttributes);
+        Article::create( $this->validateArticle());
 
         redirect('/articles');
 
@@ -80,18 +75,17 @@ class ArticlesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Article $article)
-    { request()->validate([
-            'title' => 'bail|required',
+    { Article::update($this->validateArticle());
+   
+        redirect('/articles' .$article->id);
+
+    }
+    protected function validateArticle(){
+        return request()->validate([
+             'title' => 'bail|required',
             'body' => 'bail|required',
             'except' => 'bail|required'
         ]);
-
-        $article->title = request('title');
-        $article->except = request('except');
-        $article->body = request('body');
-        $article->save();
-        redirect('/articles' .$article->id);
-
     }
 
     /**
