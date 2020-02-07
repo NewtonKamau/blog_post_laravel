@@ -38,7 +38,7 @@ class ArticlesController extends Controller
     {
         Article::create( $this->validateArticle());
 
-        redirect('/articles');
+        redirect(route('articles.index'));
 
 
     }
@@ -76,8 +76,8 @@ class ArticlesController extends Controller
      */
     public function update(Article $article)
     { Article::update($this->validateArticle());
-   
-        redirect('/articles' .$article->id);
+
+        redirect(route('articles.show', $article));
 
     }
     protected function validateArticle(){
