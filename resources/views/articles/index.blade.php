@@ -3,7 +3,7 @@
 @section('content')
     <div id="wrapper">
             <div id="page" class="container">
-                @foreach($article as $article )
+               @foreach($article as $article)
                     <div class="content">
                         <div class="title">
                             <h3>
@@ -18,7 +18,6 @@
                         </div>
                         @endforeach
                     </div>
-
-        </div>
+             </div>
     </div>
 @endsection

@@ -15,10 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/contact', function () {
-    $article = App\Article::latest()->get();
+    $article = App\Article::all();
 //    return $article;
     return view('contact',[
-        'articles' => App\Article::latest()->get()
+        'articles' => App\Article::all()
     ]);
 });
 Route::get('/articles', 'ArticlesController@index')->name('articles.index');
