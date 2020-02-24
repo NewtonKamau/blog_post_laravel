@@ -14,8 +14,15 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $article = Article::all();
-        return view('articles.index', ['article' => $article]);
+        if (request('tag')) {
+            $articles = Tag::where('name', request('tag'))->firstOrFail()->articles;
+
+        }else{
+            $article = Article::all();
+             return view('articles.index', ['article' => $article]);
+
+        }
+
     }
 
     /**
